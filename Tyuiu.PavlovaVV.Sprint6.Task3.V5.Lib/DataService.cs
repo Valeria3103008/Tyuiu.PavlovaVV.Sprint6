@@ -6,23 +6,21 @@ namespace Tyuiu.PavlovaVV.Sprint6.Task3.V5.Lib
         public int[,] Calculate(int[,] matrix)
         {
             int rows = matrix.GetUpperBound(0) + 1;
-            int columns = matrix.Length / rows;
-            int[,] array = new int[rows, columns];
+            int columns = matrix.GetUpperBound(1) + 1;
+            List<int> n = new List<int>();
+            int count = 0;
             for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < columns; j++)
-                {
-                    if ((i == 2) && (matrix[i, j] % 2 == 0))
-                    {
-                        array[i, j] = 0;
-                    }
-                    else
-                    {
-                        array[i, j] = matrix[i, j];
-                    }
-                }
+                n.Add(matrix[i, 2]);
+                n.Sort((x, y) => x.CompareTo(y));
+
             }
-            return array;
+            for (int i = 0; i < rows; i++)
+            {
+                matrix[i, 2] = n[count];
+                count++;
+            }
+            return matrix;
         }
     }
 }
